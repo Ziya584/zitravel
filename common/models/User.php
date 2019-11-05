@@ -28,7 +28,11 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
-
+	public $password_hash;
+	public $auth_key;
+	public $verification_token;
+	public $created_at;
+	public $updated_at;
     /**
      * {@inheritdoc}
      */
