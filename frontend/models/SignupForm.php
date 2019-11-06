@@ -50,11 +50,16 @@ class SignupForm extends Model
         
         $user = new User();
         $user->username = $this->username;
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        $user->generateEmailVerificationToken();
-        return $user->save() && $this->sendEmail($user);
+        $user->email =$this->email;
+		$user->password_hash =$user->setPassword($this->password);
+		$user->auth_key=$user->generateAuthKey();
+		$user->verification_token=$user->verification_token;
+		$user->created_at=date('Y-m-d H:i:s', time());
+		$user->updated_at=date('Y-m-d H:i:s', time());
+		$user->password_reset_token =
+        $user->verification_token =$user->generateEmailVerificationToken();
+
+        return $user->save(false) && $this->sendEmail($user);
 
     }
 

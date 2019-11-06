@@ -28,11 +28,11 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
 
-	public $password_hash;
-	public $auth_key;
-	public $verification_token;
-	public $created_at;
-	public $updated_at;
+//	public $password_hash;
+//	public $auth_key;
+//	public $verification_token;
+//	public $created_at;
+//	public $updated_at;
     /**
      * {@inheritdoc}
      */
@@ -179,7 +179,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function setPassword($password)
     {
-        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+        return Yii::$app->security->generatePasswordHash($password);
     }
 
     /**
@@ -187,7 +187,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function generateAuthKey()
     {
-        $this->auth_key = Yii::$app->security->generateRandomString();
+        return Yii::$app->security->generateRandomString();
     }
 
     /**
@@ -195,12 +195,12 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function generatePasswordResetToken()
     {
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+        return Yii::$app->security->generateRandomString() . '_' . time();
     }
 
     public function generateEmailVerificationToken()
     {
-        $this->verification_token = Yii::$app->security->generateRandomString() . '_' . time();
+        return Yii::$app->security->generateRandomString() . '_' . time();
     }
 
     /**
@@ -208,6 +208,6 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function removePasswordResetToken()
     {
-        $this->password_reset_token = null;
+        return null;
     }
 }
