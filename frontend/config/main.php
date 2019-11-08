@@ -12,6 +12,7 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
@@ -45,5 +46,6 @@ return [
         ],
 
     ],
+	'layout' => 'default',
     'params' => $params,
 ];
